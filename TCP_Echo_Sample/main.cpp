@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include "TCP.h"
-
-
+	
 int main()
 {
 	TCP tcp;
