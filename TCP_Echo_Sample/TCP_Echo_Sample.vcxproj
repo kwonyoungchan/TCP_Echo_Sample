@@ -133,10 +133,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Json.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="TCP.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Json.h" />
     <ClInclude Include="TCP.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

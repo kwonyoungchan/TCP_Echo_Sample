@@ -1,6 +1,7 @@
 #include "TCP.h"
 #include <stdio.h>
-
+#include "Json.h"
+#include <string>
 void TCP::StartWSA()
 {
 	if (::WSAStartup(MAKEWORD(2, 2), &wsa) != 0)
@@ -65,9 +66,11 @@ void TCP::AccepetAndCommunication()
 		//클라이언트로부터 문자열을 수신함.
 		while ((nReceive = ::recv(hClient, szBuffer, sizeof(szBuffer), 0)) > 0)
 		{
+			// 여기에 Json 파싱해서 값을 측정한다.
 			//수신한 문자열을 그대로 반향전송.
 			::send(hClient, szBuffer, sizeof(szBuffer), 0);
-			puts(szBuffer); fflush(stdout);
+			Json j;
+			puts(j.ReadComment(szBuffer).c_str()); fflush(stdout);
 			memset(szBuffer, 0, sizeof(szBuffer));
 		}
 
@@ -102,8 +105,10 @@ void TCP::SendToServer()
 		gets_s(szBuffer);
 		if (strcmp(szBuffer, "EXIT") == 0)		break;
 
+		Json j;
+		std::string comment =j.WriteJson(szBuffer);
 		//사용자가 입력한 문자열을 서버에 전송한다.
-		::send(hSocket, szBuffer, strlen(szBuffer) + 1, 0);
+		::send(hSocket, comment.c_str(), comment.size(), 0);
 		//서버로부터 방금 보낸 문자열에 대한 에코 메시지를 수신한다.
 		memset(szBuffer, 0, sizeof(szBuffer));
 		::recv(hSocket, szBuffer, sizeof(szBuffer), 0);

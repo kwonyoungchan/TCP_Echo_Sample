@@ -21,9 +21,15 @@
     <ClCompile Include="TCP.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Json.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TCP.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Json.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
