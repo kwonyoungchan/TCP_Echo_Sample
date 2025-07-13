@@ -5,6 +5,8 @@
 #include <winsock2.h>
 #pragma comment(lib, "ws2_32")
 
+#include <list>
+#include <iterator>
 
 
 class TCP
@@ -34,6 +36,8 @@ public:
 	INT ReadIpAddress(char* ipAddress);
 	INT ReadPort(int port);
 	INT ReadPort(char* port);
+public: 
+	BOOL AddUser(SOCKET hSocket);
 private:
 	WSADATA wsa = { 0 };
 	SOCKET hSocket = NULL;
@@ -42,6 +46,5 @@ private:
 private:
 	char* _ipAddress = { 0 };
 	unsigned int _port = 25000;
-
 };
 
